@@ -13,5 +13,10 @@ pipeline {
 docker info'''
       }
     }
+    stage('sharedlibrary') {
+      steps {
+        library 'github.com/base2Services/ciinabox-pipelines@master'
+      }
+    }
   }
 }
