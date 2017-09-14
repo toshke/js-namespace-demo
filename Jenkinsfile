@@ -16,6 +16,12 @@ docker info'''
     stage('sharedlibrary') {
       steps {
         library 'github.com/base2Services/ciinabox-pipelines@master'
+        script {
+          def systemInformation = shellOut('uname -a')
+          
+          echo "SystemInformation\n${systemInformation}"
+        }
+        
       }
     }
   }
