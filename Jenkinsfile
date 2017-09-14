@@ -3,7 +3,21 @@ pipeline {
   stages {
     stage('echo') {
       steps {
-        echo 'Hello World!'
+        parallel(
+          "echo": {
+            echo 'Hello World!'
+            
+          },
+          "printenv": {
+            sh 'printenv'
+            sh '''#!/usr/bin/env python
+
+import os
+
+print os.environ'''
+            
+          }
+        )
       }
     }
     stage('docker') {
