@@ -3,18 +3,14 @@ pipeline {
   stages {
     stage('echo') {
       steps {
-        parallel(
-          "echo": {
-            echo 'Hello World!'
-            
-          },
-          "": {
-            sh '''#!/bin/bash
+        echo 'Hello World!'
+      }
+    }
+    stage('docker') {
+      steps {
+        sh '''#!/bin/bash -xx
 
 docker info'''
-            
-          }
-        )
       }
     }
   }
