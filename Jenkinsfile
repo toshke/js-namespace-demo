@@ -41,5 +41,10 @@ docker info'''
 ls -la'''
       }
     }
+    stage('git checkout') {
+      steps {
+        git(branch: 'master', url: 'github.com:Base2Services/ciinabox-pipelines', credentialsId: 'test')
+      }
+    }
   }
 }
