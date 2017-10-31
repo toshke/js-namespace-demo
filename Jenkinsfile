@@ -2,22 +2,22 @@ pipeline {
   agent any
   stages {
     stage('echo') {
-      steps {
-        parallel(
-          "echo": {
+      parallel {
+        stage('echo') {
+          steps {
             echo 'Hello World!'
-            
-          },
-          "printenv": {
+          }
+        }
+        stage('printenv') {
+          steps {
             sh 'printenv'
             sh '''#!/usr/bin/env python
 
 import os
 
 print os.environ'''
-            
           }
-        )
+        }
       }
     }
     stage('docker') {
@@ -36,6 +36,9 @@ docker info'''
           echo "SystemInformation\n${systemInformation}"
         }
         
+        sh '''#!/bin/bash 
+
+ls -la'''
       }
     }
   }
